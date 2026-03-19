@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CommHIT - התראת הורה</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="incidentToast" class="toast" role="alert" aria-live="assertive">
+      <strong>אירוע חדש:</strong> זוהתה שיחה חשודה ודווחה להורה.
+    </div>
+
+    <header class="top-bar">
+      <div>
+        <h1>לוח התראות להורה</h1>
+        <p>התראה על שיחה חשודה ב-Discord</p>
+      </div>
+      <span id="alertStatusBadge" class="status-badge danger">סיכון גבוה</span>
+    </header>
+
+    <main class="layout">
+      <section class="alert-card">
+        <h2>זוהתה שיחה לא לגיטימית</h2>
+        <p class="alert-text">
+          המערכת זיהתה כי הילד שלך הצטרף לשיחה שדורגה כלא לגיטימית. מומלץ לבצע
+          אימות מיידי מול הילד ולפעול לפי ההנחיות.
+        </p>
+
+        <div class="incident-types" aria-label="סוג אירוע שזוהה">
+          <span id="singleIncidentTag" class="tag danger" aria-live="polite">
+            הטרדה
+          </span>
+        </div>
+        <p id="parentAlertText" class="parent-alert" aria-live="assertive">
+          הילד שלך חווה הטרדה בשיחה החשודה.
+        </p>
+
+        <div class="meta-grid">
+          <article class="meta-item">
+            <span class="meta-label">שם הילד</span>
+            <strong>נועם כהן</strong>
+          </article>
+          <article class="meta-item">
+            <span class="meta-label">זמן זיהוי</span>
+            <strong id="detectedAt">--:--</strong>
+          </article>
+          <article class="meta-item">
+            <span class="meta-label">פלטפורמה</span>
+            <strong>Discord</strong>
+          </article>
+          <article class="meta-item">
+            <span class="meta-label">רמת סיכון</span>
+            <strong>גבוהה</strong>
+          </article>
+          <article class="meta-item">
+            <span class="meta-label">סיווג נוכחי</span>
+            <strong id="currentIncidentType">הטרדה</strong>
+          </article>
+          <article class="meta-item">
+            <span class="meta-label">ציון סיכון</span>
+            <strong id="riskScore">92/100</strong>
+          </article>
+        </div>
+
+        <div class="actions">
+          <button id="ackBtn" type="button" class="btn primary">
+            קראתי וטיפלתי
+          </button>
+          <button id="helpBtn" type="button" class="btn ghost">
+            הנחיות להורה
+          </button>
+        </div>
+
+        <section class="chat-section" aria-label="צאט שזוהה">
+          <div class="chat-header">
+            <h3>צ׳אט שזוהה באירוע</h3>
+            <small>דוגמה להצגת הודעות עד לחיבור נתונים אמיתיים</small>
+          </div>
+
+          <div id="chatContainer" class="chat-container">
+            <article class="msg child">
+              <span class="author">הילד</span>
+              <p>היי, מי זה? אנחנו מכירים?</p>
+              <time>20:14</time>
+            </article>
+            <article class="msg suspect flagged">
+              <span class="author">גורם חשוד</span>
+              <p>אל תספר לאף אחד, בוא נעבור לשיחה פרטית.</p>
+              <time>20:15</time>
+            </article>
+            <article class="msg suspect flagged">
+              <span class="author">גורם חשוד</span>
+              <p>אם לא תעשה מה שאני אומר, יהיו לזה השלכות.</p>
+              <time>20:16</time>
+            </article>
+            <article class="msg child">
+              <span class="author">הילד</span>
+              <p>אני לא מרגיש בנוח עם זה.</p>
+              <time>20:16</time>
+            </article>
+          </div>
+        </section>
+
+      </section>
+
+      <aside class="side-card">
+        <h3>מה לעשות עכשיו?</h3>
+        <ol class="steps">
+          <li>צרו קשר עם הילד ואמתו עם מי הוא בשיחה.</li>
+          <li>בקשו מהילד לצאת מהשיחה עד לבירור.</li>
+          <li>עברו על הגדרות הפרטיות וההרשאות באפליקציה.</li>
+          <li>במקרה דחוף, פנו מיידית לגורם מקצועי.</li>
+        </ol>
+        <hr />
+        <p class="small-note">
+          הערה: כרגע זה מסך Frontend בלבד. בהמשך ניתן לחבר API אמיתי שיזין את
+          פרטי האירוע והודעות הצ׳אט בזמן אמת.
+        </p>
+        <p id="actionFeedback" class="feedback" aria-live="polite"></p>
+      </aside>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
